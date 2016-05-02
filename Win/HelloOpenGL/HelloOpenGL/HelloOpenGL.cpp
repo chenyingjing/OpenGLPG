@@ -24,7 +24,7 @@ void init()
 
 	GLfloat vertices[NumVertices][2] = {
 		{ -0.90, -0.90 },		//Triangle 1
-		{ 0.85, -0.90 },
+		{ 0.0, -0.90 },
 		{ -0.90, 0.85 },
 		{ 0.90, -0.85 },		//Triangle 2
 		{ 0.90, 0.90 },
@@ -47,6 +47,8 @@ void init()
 
 	glVertexAttribPointer(vPosition, 2, GL_FLOAT, GL_FALSE, 0, BUFFER_OFFSET(0));
 	glEnableVertexAttribArray(vPosition);
+
+	glClearColor(0.6784313725490196, 0.607843137254902, 0.3215686274509804, 0);
 }
 
 void display()
@@ -54,6 +56,7 @@ void display()
 	glClear(GL_COLOR_BUFFER_BIT);
 	glBindVertexArray(VAOs[Triangles]);
 	glDrawArrays(GL_TRIANGLES, 0, NumVertices);
+	//glDrawArrays(GL_LINES, 1, 3);
 	glFlush();
 }
 
