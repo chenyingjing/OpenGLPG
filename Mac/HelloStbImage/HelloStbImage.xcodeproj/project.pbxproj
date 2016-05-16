@@ -1,0 +1,252 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		23C88FBE1CE9ED84001F390E /* HelloStbImage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 23C88FBD1CE9ED84001F390E /* HelloStbImage.cpp */; };
+		23C88FC21CE9EE25001F390E /* bmp1.bmp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 23C88FC01CE9EDC9001F390E /* bmp1.bmp */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		23C88FB11CE9ED19001F390E /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 12;
+			dstPath = "";
+			dstSubfolderSpec = 16;
+			files = (
+				23C88FC21CE9EE25001F390E /* bmp1.bmp in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		23C88FB31CE9ED19001F390E /* HelloStbImage */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = HelloStbImage; sourceTree = BUILT_PRODUCTS_DIR; };
+		23C88FBD1CE9ED84001F390E /* HelloStbImage.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HelloStbImage.cpp; sourceTree = "<group>"; };
+		23C88FBF1CE9EDA9001F390E /* stb_image.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = stb_image.h; sourceTree = "<group>"; };
+		23C88FC01CE9EDC9001F390E /* bmp1.bmp */ = {isa = PBXFileReference; lastKnownFileType = image.bmp; name = bmp1.bmp; path = HelloStbImage/bmp1.bmp; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		23C88FB01CE9ED19001F390E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		23C88FAA1CE9ED19001F390E = {
+			isa = PBXGroup;
+			children = (
+				23C88FC01CE9EDC9001F390E /* bmp1.bmp */,
+				23C88FB51CE9ED19001F390E /* HelloStbImage */,
+				23C88FB41CE9ED19001F390E /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		23C88FB41CE9ED19001F390E /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				23C88FB31CE9ED19001F390E /* HelloStbImage */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		23C88FB51CE9ED19001F390E /* HelloStbImage */ = {
+			isa = PBXGroup;
+			children = (
+				23C88FBF1CE9EDA9001F390E /* stb_image.h */,
+				23C88FBD1CE9ED84001F390E /* HelloStbImage.cpp */,
+			);
+			path = HelloStbImage;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		23C88FB21CE9ED19001F390E /* HelloStbImage */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 23C88FBA1CE9ED19001F390E /* Build configuration list for PBXNativeTarget "HelloStbImage" */;
+			buildPhases = (
+				23C88FAF1CE9ED19001F390E /* Sources */,
+				23C88FB01CE9ED19001F390E /* Frameworks */,
+				23C88FB11CE9ED19001F390E /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = HelloStbImage;
+			productName = HelloStbImage;
+			productReference = 23C88FB31CE9ED19001F390E /* HelloStbImage */;
+			productType = "com.apple.product-type.tool";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		23C88FAB1CE9ED19001F390E /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0730;
+				ORGANIZATIONNAME = cyj;
+				TargetAttributes = {
+					23C88FB21CE9ED19001F390E = {
+						CreatedOnToolsVersion = 7.3.1;
+					};
+				};
+			};
+			buildConfigurationList = 23C88FAE1CE9ED19001F390E /* Build configuration list for PBXProject "HelloStbImage" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 23C88FAA1CE9ED19001F390E;
+			productRefGroup = 23C88FB41CE9ED19001F390E /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				23C88FB21CE9ED19001F390E /* HelloStbImage */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		23C88FAF1CE9ED19001F390E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				23C88FBE1CE9ED84001F390E /* HelloStbImage.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		23C88FB81CE9ED19001F390E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		23C88FB91CE9ED19001F390E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		23C88FBB1CE9ED19001F390E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		23C88FBC1CE9ED19001F390E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		23C88FAE1CE9ED19001F390E /* Build configuration list for PBXProject "HelloStbImage" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				23C88FB81CE9ED19001F390E /* Debug */,
+				23C88FB91CE9ED19001F390E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		23C88FBA1CE9ED19001F390E /* Build configuration list for PBXNativeTarget "HelloStbImage" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				23C88FBB1CE9ED19001F390E /* Debug */,
+				23C88FBC1CE9ED19001F390E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 23C88FAB1CE9ED19001F390E /* Project object */;
+}
