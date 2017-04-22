@@ -16,7 +16,7 @@
 #include <sstream>
 #include <string>
 
-float gDegreesRotated = 45.0f;
+float gDegreesRotated = 0.0f;
 tdogl::Camera gCamera;
 double gScrollY = 0.0;
 
@@ -140,9 +140,6 @@ static void LoadWoodenCrateAsset() {
 	glEnableVertexAttribArray(gWoodenCrate.shaders->attrib("vertTexCoord"));
 	glVertexAttribPointer(gWoodenCrate.shaders->attrib("vertTexCoord"), 2, GL_FLOAT, GL_TRUE, 8 * sizeof(GLfloat), (const GLvoid*)(3 * sizeof(GLfloat)));
 
-	glEnableVertexAttribArray(gWoodenCrate.shaders->attrib("vertNormal"));
-	glVertexAttribPointer(gWoodenCrate.shaders->attrib("vertNormal"), 3, GL_FLOAT, GL_TRUE, 8 * sizeof(GLfloat), (const GLvoid*)(5 * sizeof(GLfloat)));
-
 	// unbind the VAO
 	glBindVertexArray(0);
 }
@@ -164,26 +161,6 @@ static void CreateInstances() {
 	dot.asset = &gWoodenCrate;
 	dot.transform = glm::mat4();
 	gInstances.push_back(dot);
-
-	ModelInstance i;
-	i.asset = &gWoodenCrate;
-	i.transform = translate(0, -4, 0) * scale(1, 2, 1);
-	gInstances.push_back(i);
-
-	ModelInstance hLeft;
-	hLeft.asset = &gWoodenCrate;
-	hLeft.transform = translate(-8, 0, 0) * scale(1, 6, 1);
-	gInstances.push_back(hLeft);
-
-	ModelInstance hRight;
-	hRight.asset = &gWoodenCrate;
-	hRight.transform = translate(-4, 0, 0) * scale(1, 6, 1);
-	gInstances.push_back(hRight);
-
-	ModelInstance hMid;
-	hMid.asset = &gWoodenCrate;
-	hMid.transform = translate(-6, 0, 0) * scale(2, 1, 0.8f);
-	gInstances.push_back(hMid);
 }
 
 // records how far the y axis has been scrolled
@@ -192,8 +169,8 @@ void OnScroll(GLFWwindow* window, double deltaX, double deltaY) {
 }
 
 void Update(float secondsElapsed, GLFWwindow* window) {
-	const GLfloat degreesPerSecond = 180.0f;
-	//const GLfloat degreesPerSecond = 0.0f;
+	//const GLfloat degreesPerSecond = 180.0f;
+	const GLfloat degreesPerSecond = 0.0f;
 	gDegreesRotated += secondsElapsed * degreesPerSecond;
 	while (gDegreesRotated > 360.0f) gDegreesRotated -= 360.0f;
 	gInstances.front().transform = glm::rotate(glm::mat4(), gDegreesRotated, glm::vec3(0, 1, 0));
@@ -219,24 +196,6 @@ void Update(float secondsElapsed, GLFWwindow* window) {
 	else if (glfwGetKey(window, 'X')) {
 		gCamera.offsetPosition(secondsElapsed * moveSpeed * glm::vec3(0, 1, 0));
 	}
-
-	//move light
-	if (glfwGetKey(window, '1')) {
-		gLights[0].position = glm::vec4(gCamera.position(), 1.0);
-		gLights[0].coneDirection = gCamera.forward();
-	}
-
-	// change light color
-	if (glfwGetKey(window, '2'))
-		gLights[0].intensities = glm::vec3(1, 0, 0); //red
-	else if (glfwGetKey(window, '3'))
-		gLights[0].intensities = glm::vec3(0, 1, 0); //green
-	else if (glfwGetKey(window, '4'))
-		gLights[0].intensities = glm::vec3(1, 1, 1); //white
-	else if (glfwGetKey(window, '5'))
-		gLights[1].position = glm::vec4(1, 0.8, 0.6, 0);
-	else if (glfwGetKey(window, '6'))
-		gLights[1].position = glm::vec4(0, 0.8, -0.6, 0);
 
 	//rotate camera based on mouse movement
 	const float mouseSensitivity = 0.1f;
@@ -282,15 +241,6 @@ const GLchar* ReadShader(const char* filename)
 	return source;
 }
 
-template <typename T>
-void SetLightUniform(tdogl::Program* shaders, const char* propertyName, size_t lightIndex, const T& value) {
-	std::ostringstream ss;
-	ss << "allLights[" << lightIndex << "]." << propertyName;
-	std::string uniformName = ss.str();
-
-	shaders->setUniform(uniformName.c_str(), value);
-}
-
 static void RenderInstance(const ModelInstance& inst) {
 	ModelAsset* asset = inst.asset;
 	tdogl::Program* shaders = asset->shaders;
@@ -298,31 +248,14 @@ static void RenderInstance(const ModelInstance& inst) {
 	//bind the shaders
 	shaders->use();
 
-	shaders->setUniform("numLights", (int)gLights.size());
-
-	for (size_t i = 0; i < gLights.size(); ++i) {
-		SetLightUniform(shaders, "position", i, gLights[i].position);
-		SetLightUniform(shaders, "intensities", i, gLights[i].intensities);
-		SetLightUniform(shaders, "attenuation", i, gLights[i].attenuation);
-		SetLightUniform(shaders, "ambientCoefficient", i, gLights[i].ambientCoefficient);
-		SetLightUniform(shaders, "coneAngle", i, gLights[i].coneAngle);
-		SetLightUniform(shaders, "coneDirection", i, gLights[i].coneDirection);
-	}
-
-
-
-	shaders->setUniform("cameraPosition", gCamera.position());
+	//shaders->setUniform("cameraPosition", gCamera.position());
 
 	//set the shader uniforms
 	shaders->setUniform("camera", gCamera.matrix());
 	shaders->setUniform("model", inst.transform);
 	shaders->setUniform("materialTex", 0); //set to 0 because the texture will be bound to GL_TEXTURE0
 
-	shaders->setUniform("materialShininess", asset->shininess);
-	shaders->setUniform("materialSpecularColor", asset->specularColor);
-
-
-								   //bind the texture
+	//bind the texture
 	glActiveTexture(GL_TEXTURE0);
 	glBindTexture(GL_TEXTURE_2D, asset->texture->object());
 
@@ -400,26 +333,9 @@ int main(void)
 	glClearColor(0.0f, 0.0f, 0.0f, 1);
 
 
-	gCamera.setPosition(glm::vec3(-4, 0, 17));
+	gCamera.setPosition(glm::vec3(0, 0, 17));
 	gCamera.setViewportAspectRatio(800.0f / 600.0f);
 	gCamera.setNearAndFarPlanes(0.5f, 100.0f);
-
-	// setup lights
-	Light spotlight;
-	spotlight.position = glm::vec4(-4, 0, 10, 1);
-	spotlight.intensities = glm::vec3(2, 2, 2); //strong white light
-	spotlight.attenuation = 0.1f;
-	spotlight.ambientCoefficient = 0.0f; //no ambient light
-	spotlight.coneAngle = 15.0f;
-	spotlight.coneDirection = glm::vec3(0, 0, -1);
-
-	Light directionalLight;
-	directionalLight.position = glm::vec4(1, 0.8, 0.6, 0); //w == 0 indications a directional light
-	directionalLight.intensities = glm::vec3(0.4, 0.3, 0.1); //weak yellowish light
-	directionalLight.ambientCoefficient = 0.06f;
-
-	gLights.push_back(spotlight);
-	gLights.push_back(directionalLight);
 
 	double lastTime = glfwGetTime();
 	while (!glfwWindowShouldClose(window))
