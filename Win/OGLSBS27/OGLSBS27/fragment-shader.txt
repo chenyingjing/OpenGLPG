@@ -1,10 +1,14 @@
 #version 330
 
-//uniform sampler2D materialTex;
+uniform sampler2D materialTex;
 //in vec2 fragTexCoord;
-out vec4 finalColor;
+in vec2 TexCoord;
+out vec4 FragColor;
 
 void main() {
-    //finalColor = texture(materialTex, fragTexCoord);
-	finalColor = vec4(1, 1, 1, 1);
+    FragColor = texture(materialTex, TexCoord);
+
+    if (FragColor.r == 0 && FragColor.g == 0 && FragColor.b == 0) {
+        discard;                                                                    
+    }
 }

@@ -61,18 +61,28 @@ static tdogl::Program* LoadShaders(const char *shaderFile1, const char *shaderFi
 	return new tdogl::Program(shaders);
 }
 
+static tdogl::Program* LoadShaders(const char *shaderFile1, const char *shaderFile2, const char *shaderFile3) {
+	std::vector<tdogl::Shader> shaders;
+	shaders.push_back(tdogl::Shader::shaderFromFile(shaderFile1, GL_VERTEX_SHADER));
+	shaders.push_back(tdogl::Shader::shaderFromFile(shaderFile2, GL_GEOMETRY_SHADER));
+	shaders.push_back(tdogl::Shader::shaderFromFile(shaderFile3, GL_FRAGMENT_SHADER));
+	return new tdogl::Program(shaders);
+}
+
 static tdogl::Texture* LoadTexture(const char *textureFile) {
 	tdogl::Bitmap bmp = tdogl::Bitmap::bitmapFromFile(textureFile);
-	bmp.flipVertically();
+	//bmp.flipVertically();
 	return new tdogl::Texture(bmp);
 }
 
 static void LoadWoodenCrateAsset() {
-	gWoodenCrate.shaders = LoadShaders("vertex-shader.txt", "fragment-shader.txt");
+	//gWoodenCrate.shaders = LoadShaders("vertex-shader.txt", "fragment-shader.txt");
+	gWoodenCrate.shaders = LoadShaders("vertex-shader.txt",
+		"geometry-shader.txt", "fragment-shader.txt");
 	gWoodenCrate.drawType = GL_POINTS;
 	gWoodenCrate.drawStart = 0;
 	gWoodenCrate.drawCount = NUM_ROWS * NUM_COLUMNS;
-	gWoodenCrate.texture = LoadTexture("wooden-crate.jpg");
+	gWoodenCrate.texture = LoadTexture("monster_hellknight.png");
 	gWoodenCrate.shininess = 80.0;
 	gWoodenCrate.specularColor = glm::vec3(1.0f, 1.0f, 1.0f);
 	
@@ -209,7 +219,7 @@ static void RenderInstance(const ModelInstance& inst) {
 	//bind the shaders
 	shaders->use();
 
-	//shaders->setUniform("cameraPosition", gCamera.position());
+	shaders->setUniform("gCameraPos", gCamera.position());
 
 	//set the shader uniforms
 	shaders->setUniform("camera", gCamera.matrix());
@@ -290,11 +300,11 @@ int main(void)
 
 	CreateInstances();
 
-	glClearColor(0.196078431372549f, 0.3137254901960784f, 0.5882352941176471f, 1);
-	//glClearColor(0.0f, 0.0f, 0.0f, 1);
+	//glClearColor(0.196078431372549f, 0.3137254901960784f, 0.5882352941176471f, 1);
+	glClearColor(0.0f, 0.0f, 0.0f, 1);
 
 
-	gCamera.setPosition(glm::vec3(4, 3, 15));
+	gCamera.setPosition(glm::vec3(3.8, 1, 11));
 	gCamera.offsetOrientation(10, 0);
 	gCamera.setViewportAspectRatio(800.0f / 600.0f);
 	gCamera.setNearAndFarPlanes(0.5f, 100.0f);

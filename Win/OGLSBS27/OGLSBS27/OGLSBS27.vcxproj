@@ -151,9 +151,11 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <Text Include="fragment-shader.txt" />
+    <Text Include="geometry-shader.txt" />
     <Text Include="vertex-shader.txt" />
   </ItemGroup>
   <ItemGroup>
+    <Image Include="monster_hellknight.png" />
     <Image Include="wooden-crate.jpg" />
   </ItemGroup>
   <ItemGroup>
