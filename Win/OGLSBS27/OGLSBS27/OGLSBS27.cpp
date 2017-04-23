@@ -16,6 +16,9 @@
 #include <sstream>
 #include <string>
 
+#define NUM_ROWS 10
+#define NUM_COLUMNS 10
+
 float gDegreesRotated = 0.0f;
 tdogl::Camera gCamera;
 double gScrollY = 0.0;
@@ -66,9 +69,9 @@ static tdogl::Texture* LoadTexture(const char *textureFile) {
 
 static void LoadWoodenCrateAsset() {
 	gWoodenCrate.shaders = LoadShaders("vertex-shader.txt", "fragment-shader.txt");
-	gWoodenCrate.drawType = GL_TRIANGLES;
+	gWoodenCrate.drawType = GL_POINTS;
 	gWoodenCrate.drawStart = 0;
-	gWoodenCrate.drawCount = 6 * 2 * 3;
+	gWoodenCrate.drawCount = NUM_ROWS * NUM_COLUMNS;
 	gWoodenCrate.texture = LoadTexture("wooden-crate.jpg");
 	gWoodenCrate.shininess = 80.0;
 	gWoodenCrate.specularColor = glm::vec3(1.0f, 1.0f, 1.0f);
@@ -79,66 +82,24 @@ static void LoadWoodenCrateAsset() {
 	glGenVertexArrays(1, &gWoodenCrate.vao);
 	glBindVertexArray(gWoodenCrate.vao);
 
-	// Make a cube out of triangles (two triangles per side)
-	GLfloat vertexData[] = {
-		//  X     Y     Z       U     V          Normal
-		// bottom
-		-1.0f,-1.0f,-1.0f,   0.0f, 0.0f,   0.0f, -1.0f, 0.0f,
-		1.0f,-1.0f,-1.0f,   1.0f, 0.0f,   0.0f, -1.0f, 0.0f,
-		-1.0f,-1.0f, 1.0f,   0.0f, 1.0f,   0.0f, -1.0f, 0.0f,
-		1.0f,-1.0f,-1.0f,   1.0f, 0.0f,   0.0f, -1.0f, 0.0f,
-		1.0f,-1.0f, 1.0f,   1.0f, 1.0f,   0.0f, -1.0f, 0.0f,
-		-1.0f,-1.0f, 1.0f,   0.0f, 1.0f,   0.0f, -1.0f, 0.0f,
+	glm::vec3 Positions[NUM_ROWS * NUM_COLUMNS];
 
-		// top
-		-1.0f, 1.0f,-1.0f,   0.0f, 0.0f,   0.0f, 1.0f, 0.0f,
-		-1.0f, 1.0f, 1.0f,   0.0f, 1.0f,   0.0f, 1.0f, 0.0f,
-		1.0f, 1.0f,-1.0f,   1.0f, 0.0f,   0.0f, 1.0f, 0.0f,
-		1.0f, 1.0f,-1.0f,   1.0f, 0.0f,   0.0f, 1.0f, 0.0f,
-		-1.0f, 1.0f, 1.0f,   0.0f, 1.0f,   0.0f, 1.0f, 0.0f,
-		1.0f, 1.0f, 1.0f,   1.0f, 1.0f,   0.0f, 1.0f, 0.0f,
+	for (unsigned int j = 0; j < NUM_ROWS; j++) {
+		for (unsigned int i = 0; i < NUM_COLUMNS; i++) {
+			glm::vec3 Pos((float)i, 0.0f, (float)j);
+			Positions[j * NUM_COLUMNS + i] = Pos;
+		}
+	}
 
-		// front
-		-1.0f,-1.0f, 1.0f,   1.0f, 0.0f,   0.0f, 0.0f, 1.0f,
-		1.0f,-1.0f, 1.0f,   0.0f, 0.0f,   0.0f, 0.0f, 1.0f,
-		-1.0f, 1.0f, 1.0f,   1.0f, 1.0f,   0.0f, 0.0f, 1.0f,
-		1.0f,-1.0f, 1.0f,   0.0f, 0.0f,   0.0f, 0.0f, 1.0f,
-		1.0f, 1.0f, 1.0f,   0.0f, 1.0f,   0.0f, 0.0f, 1.0f,
-		-1.0f, 1.0f, 1.0f,   1.0f, 1.0f,   0.0f, 0.0f, 1.0f,
-
-		// back
-		-1.0f,-1.0f,-1.0f,   0.0f, 0.0f,   0.0f, 0.0f, -1.0f,
-		-1.0f, 1.0f,-1.0f,   0.0f, 1.0f,   0.0f, 0.0f, -1.0f,
-		1.0f,-1.0f,-1.0f,   1.0f, 0.0f,   0.0f, 0.0f, -1.0f,
-		1.0f,-1.0f,-1.0f,   1.0f, 0.0f,   0.0f, 0.0f, -1.0f,
-		-1.0f, 1.0f,-1.0f,   0.0f, 1.0f,   0.0f, 0.0f, -1.0f,
-		1.0f, 1.0f,-1.0f,   1.0f, 1.0f,   0.0f, 0.0f, -1.0f,
-
-		// left
-		-1.0f,-1.0f, 1.0f,   0.0f, 1.0f,   -1.0f, 0.0f, 0.0f,
-		-1.0f, 1.0f,-1.0f,   1.0f, 0.0f,   -1.0f, 0.0f, 0.0f,
-		-1.0f,-1.0f,-1.0f,   0.0f, 0.0f,   -1.0f, 0.0f, 0.0f,
-		-1.0f,-1.0f, 1.0f,   0.0f, 1.0f,   -1.0f, 0.0f, 0.0f,
-		-1.0f, 1.0f, 1.0f,   1.0f, 1.0f,   -1.0f, 0.0f, 0.0f,
-		-1.0f, 1.0f,-1.0f,   1.0f, 0.0f,   -1.0f, 0.0f, 0.0f,
-
-		// right
-		1.0f,-1.0f, 1.0f,   1.0f, 1.0f,   1.0f, 0.0f, 0.0f,
-		1.0f,-1.0f,-1.0f,   1.0f, 0.0f,   1.0f, 0.0f, 0.0f,
-		1.0f, 1.0f,-1.0f,   0.0f, 0.0f,   1.0f, 0.0f, 0.0f,
-		1.0f,-1.0f, 1.0f,   1.0f, 1.0f,   1.0f, 0.0f, 0.0f,
-		1.0f, 1.0f,-1.0f,   0.0f, 0.0f,   1.0f, 0.0f, 0.0f,
-		1.0f, 1.0f, 1.0f,   0.0f, 1.0f,   1.0f, 0.0f, 0.0f
-	};
-	glBufferData(GL_ARRAY_BUFFER, sizeof(vertexData), vertexData, GL_STATIC_DRAW);
+	glBufferData(GL_ARRAY_BUFFER, sizeof(Positions), &Positions[0], GL_STATIC_DRAW);
 
 	// connect the xyz to the "vert" attribute of the vertex shader
 	glEnableVertexAttribArray(gWoodenCrate.shaders->attrib("vert"));
-	glVertexAttribPointer(gWoodenCrate.shaders->attrib("vert"), 3, GL_FLOAT, GL_FALSE, 8 * sizeof(GLfloat), NULL);
+	glVertexAttribPointer(gWoodenCrate.shaders->attrib("vert"), 3, GL_FLOAT, GL_FALSE, 0, 0);
 
 	// connect the uv coords to the "vertTexCoord" attribute of the vertex shader
-	glEnableVertexAttribArray(gWoodenCrate.shaders->attrib("vertTexCoord"));
-	glVertexAttribPointer(gWoodenCrate.shaders->attrib("vertTexCoord"), 2, GL_FLOAT, GL_TRUE, 8 * sizeof(GLfloat), (const GLvoid*)(3 * sizeof(GLfloat)));
+	//glEnableVertexAttribArray(gWoodenCrate.shaders->attrib("vertTexCoord"));
+	//glVertexAttribPointer(gWoodenCrate.shaders->attrib("vertTexCoord"), 2, GL_FLOAT, GL_TRUE, 8 * sizeof(GLfloat), (const GLvoid*)(3 * sizeof(GLfloat)));
 
 	// unbind the VAO
 	glBindVertexArray(0);
@@ -253,7 +214,7 @@ static void RenderInstance(const ModelInstance& inst) {
 	//set the shader uniforms
 	shaders->setUniform("camera", gCamera.matrix());
 	shaders->setUniform("model", inst.transform);
-	shaders->setUniform("materialTex", 0); //set to 0 because the texture will be bound to GL_TEXTURE0
+	//shaders->setUniform("materialTex", 0); //set to 0 because the texture will be bound to GL_TEXTURE0
 
 	//bind the texture
 	glActiveTexture(GL_TEXTURE0);
@@ -329,11 +290,12 @@ int main(void)
 
 	CreateInstances();
 
-	//glClearColor(0.196078431372549f, 0.3137254901960784f, 0.5882352941176471f, 1);
-	glClearColor(0.0f, 0.0f, 0.0f, 1);
+	glClearColor(0.196078431372549f, 0.3137254901960784f, 0.5882352941176471f, 1);
+	//glClearColor(0.0f, 0.0f, 0.0f, 1);
 
 
-	gCamera.setPosition(glm::vec3(0, 0, 17));
+	gCamera.setPosition(glm::vec3(4, 3, 15));
+	gCamera.offsetOrientation(10, 0);
 	gCamera.setViewportAspectRatio(800.0f / 600.0f);
 	gCamera.setNearAndFarPlanes(0.5f, 100.0f);
 
