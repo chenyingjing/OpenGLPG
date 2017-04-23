@@ -11,7 +11,6 @@
 		2314121E1EAC795200368974 /* fragment-shader.txt in Resources */ = {isa = PBXBuildFile; fileRef = 231411071EAC795100368974 /* fragment-shader.txt */; };
 		2314121F1EAC795200368974 /* glew.c in Sources */ = {isa = PBXBuildFile; fileRef = 231411081EAC795100368974 /* glew.c */; };
 		231412901EAC795200368974 /* libglfw3.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2314120D1EAC795200368974 /* libglfw3.a */; };
-		231412911EAC795200368974 /* OpenGL08.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2314120E1EAC795200368974 /* OpenGL08.cpp */; };
 		231412921EAC795200368974 /* Bitmap.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 231412111EAC795200368974 /* Bitmap.cpp */; };
 		231412931EAC795200368974 /* Camera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 231412131EAC795200368974 /* Camera.cpp */; };
 		231412941EAC795200368974 /* Program.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 231412151EAC795200368974 /* Program.cpp */; };
@@ -23,6 +22,9 @@
 		2314129D1EAC7B4200368974 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2314129C1EAC7B4200368974 /* CoreVideo.framework */; };
 		2314129F1EAC7B4D00368974 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2314129E1EAC7B4D00368974 /* OpenGL.framework */; };
 		231412A11EAC7B5A00368974 /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 231412A01EAC7B5A00368974 /* IOKit.framework */; };
+		231412A51EAC7C7900368974 /* geometry-shader.txt in Resources */ = {isa = PBXBuildFile; fileRef = 231412A21EAC7C7900368974 /* geometry-shader.txt */; };
+		231412A61EAC7C7900368974 /* monster_hellknight.png in Resources */ = {isa = PBXBuildFile; fileRef = 231412A31EAC7C7900368974 /* monster_hellknight.png */; };
+		231412A71EAC7C7900368974 /* OGLSBS27.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 231412A41EAC7C7900368974 /* OGLSBS27.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,7 +36,6 @@
 		231411091EAC795100368974 /* glew.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = glew.h; sourceTree = "<group>"; };
 		2314110A1EAC795100368974 /* glfw3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = glfw3.h; sourceTree = "<group>"; };
 		2314120D1EAC795200368974 /* libglfw3.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libglfw3.a; sourceTree = "<group>"; };
-		2314120E1EAC795200368974 /* OpenGL08.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = OpenGL08.cpp; sourceTree = "<group>"; };
 		2314120F1EAC795200368974 /* stb_image.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = stb_image.h; sourceTree = "<group>"; };
 		231412111EAC795200368974 /* Bitmap.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Bitmap.cpp; sourceTree = "<group>"; };
 		231412121EAC795200368974 /* Bitmap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Bitmap.h; sourceTree = "<group>"; };
@@ -52,6 +53,9 @@
 		2314129C1EAC7B4200368974 /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
 		2314129E1EAC7B4D00368974 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
 		231412A01EAC7B5A00368974 /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = System/Library/Frameworks/IOKit.framework; sourceTree = SDKROOT; };
+		231412A21EAC7C7900368974 /* geometry-shader.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "geometry-shader.txt"; sourceTree = "<group>"; };
+		231412A31EAC7C7900368974 /* monster_hellknight.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = monster_hellknight.png; sourceTree = "<group>"; };
+		231412A41EAC7C7900368974 /* OGLSBS27.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = OGLSBS27.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,6 +94,9 @@
 		231410F01EAC78BD00368974 /* OGLSBS27 */ = {
 			isa = PBXGroup;
 			children = (
+				231412A21EAC7C7900368974 /* geometry-shader.txt */,
+				231412A31EAC7C7900368974 /* monster_hellknight.png */,
+				231412A41EAC7C7900368974 /* OGLSBS27.cpp */,
 				231411051EAC795100368974 /* filePath.h */,
 				231411061EAC795100368974 /* filePath.mm */,
 				231411071EAC795100368974 /* fragment-shader.txt */,
@@ -97,7 +104,6 @@
 				231411091EAC795100368974 /* glew.h */,
 				2314110A1EAC795100368974 /* glfw3.h */,
 				2314120D1EAC795200368974 /* libglfw3.a */,
-				2314120E1EAC795200368974 /* OpenGL08.cpp */,
 				2314120F1EAC795200368974 /* stb_image.h */,
 				231412101EAC795200368974 /* tdogl */,
 				2314121B1EAC795200368974 /* vertex-shader.txt */,
@@ -202,7 +208,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				231412971EAC795200368974 /* vertex-shader.txt in Resources */,
+				231412A51EAC7C7900368974 /* geometry-shader.txt in Resources */,
 				2314121E1EAC795200368974 /* fragment-shader.txt in Resources */,
+				231412A61EAC7C7900368974 /* monster_hellknight.png in Resources */,
 				231412981EAC795200368974 /* wooden-crate.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -221,7 +229,7 @@
 				231412961EAC795200368974 /* Texture.cpp in Sources */,
 				231412941EAC795200368974 /* Program.cpp in Sources */,
 				2314121D1EAC795200368974 /* filePath.mm in Sources */,
-				231412911EAC795200368974 /* OpenGL08.cpp in Sources */,
+				231412A71EAC7C7900368974 /* OGLSBS27.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -372,6 +380,7 @@
 				231411041EAC78BD00368974 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

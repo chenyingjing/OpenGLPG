@@ -1,20 +1,19 @@
-#version 150
-
-uniform mat4 camera;
-uniform mat4 model;
+#version 330
 
 in vec3 vert;
-in vec2 vertTexCoord;
-in vec3 vertNormal;
 
-out vec3 fragVert;
-out vec2 fragTexCoord;
-out vec3 fragNormal;
+//uniform mat4 camera;
+//uniform mat4 model;
+
+//in vec2 vertTexCoord;
+
+//out vec3 fragVert;
+//out vec2 fragTexCoord;
+//out vec3 fragNormal;
 
 void main() {
-    fragTexCoord = vertTexCoord;
-    fragNormal = vertNormal;
-    fragVert = vert;
+    //fragTexCoord = vertTexCoord;
+    //fragVert = vert;
     
-    gl_Position = camera * model * vec4(vert, 1);
+    gl_Position = vec4(vert, 1);
 }
