@@ -220,7 +220,7 @@ static void RenderInstance(const ModelInstance& inst) {
 	//set the shader uniforms
 	shaders->setUniform("camera", gCamera.matrix());
 	shaders->setUniform("model", inst.transform);
-	//shaders->setUniform("materialTex", 0); //set to 0 because the texture will be bound to GL_TEXTURE0
+	shaders->setUniform("materialTex", 0); //set to 0 because the texture will be bound to GL_TEXTURE0
 
 	//bind the texture
 	glActiveTexture(GL_TEXTURE0);
